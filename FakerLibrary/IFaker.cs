@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FakerLibrary
 {
-    public class Class1
+    public interface IFaker
     {
+        T Create<T>();
     }
 }
