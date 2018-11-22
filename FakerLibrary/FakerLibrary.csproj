@@ -40,10 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoolGenerator.cs" />
+    <Compile Include="CharGenerator.cs" />
+    <Compile Include="DateGenerator.cs" />
+    <Compile Include="DoubleGenerator.cs" />
     <Compile Include="Faker.cs" />
+    <Compile Include="FloatGenerator.cs" />
     <Compile Include="IFaker.cs" />
+    <Compile Include="IntGenerator.cs" />
     <Compile Include="IValueGenerator.cs" />
+    <Compile Include="LongGenerator.cs" />
+    <Compile Include="ObjectGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShortGenerator.cs" />
+    <Compile Include="StringGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
