@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace FakerLibrary
 {
-    class DoubleGenerator : IValueGenerator
+    class Randomizer
     {
-        public object Generate()
-        {
-            return Randomizer.random.NextDouble();
-        }
+        public static Random random = new Random();
     }
 }
