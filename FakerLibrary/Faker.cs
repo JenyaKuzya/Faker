@@ -8,9 +8,29 @@ namespace FakerLibrary
 {
     public class Faker : IFaker
     {
+        protected Dictionary<Type, IValueGenerator> baseTypesGenerators;
+
         public Faker()
         {
-
+            baseTypesGenerators = new Dictionary<Type, IValueGenerator>
+            {
+                { typeof(object), new ObjectGenerator() },
+                { typeof(char), new CharGenerator() },
+                { typeof(bool), new BoolGenerator() },
+                { typeof(byte), new ByteGenerator() },
+                { typeof(sbyte), new SByteGenerator() },
+                { typeof(int), new IntGenerator() },
+                { typeof(uint), new UIntGenerator() },
+                { typeof(short), new ShortGenerator() },
+                { typeof(ushort), new UShortGenerator() },
+                { typeof(long), new LongGenerator() },
+                { typeof(ulong), new ULongGenerator() },
+                { typeof(decimal), new DecimalGenerator() },
+                { typeof(float), new FloatGenerator() },
+                { typeof(double), new DoubleGenerator() },
+                { typeof(DateTime), new DateGenerator() },
+                { typeof(string), new StringGenerator() }
+            };
         }
 
         public T Create<T>()
@@ -20,24 +40,33 @@ namespace FakerLibrary
 
         private object Create(Type type)
         {
-            object generatedItem;
+            object generatedObject;
 
             if (baseTypesGenerators.TryGetValue(type, out IBaseTypeGenerator baseTypeGenerator))
             {
-                generated = baseTypeGenerator.Generate();
+                generatedObject = baseTypeGenerator.Generate();
             }
             else if (type.IsGenericType && genericTypesGenerators.TryGetValue(type.GetGenericTypeDefinition(), out IGenericTypeGenerator genericTypeGenerator))
             {
-                generated = genericTypeGenerator.Generate(type.GenericTypeArguments[0]);
+                generatedObject = genericTypeGenerator.Generate(type.GenericTypeArguments[0]);
             }
             else if (type.IsArray && arraysGenerators.TryGetValue(type.GetArrayRank(), out IArrayGenerator arrayGenerator))
             {
-                generated = arrayGenerator.Generate(type.GetElementType());
+                generatedObject = arrayGenerator.Generate(type.GetElementType());
             }
             else if (type.IsClass && !type.IsGenericType && !type.IsArray && !type.IsPointer && !type.IsAbstract && !generatedTypes.Contains(type))
             {
             }
+            else if (type.IsValueType)
+            {
+                generatedObject = Activator.CreateInstance(type);
+            }
+            else
+            {
+                generatedObject = null;
+            }
 
+            return generatedObject;
         }
     }
 }
