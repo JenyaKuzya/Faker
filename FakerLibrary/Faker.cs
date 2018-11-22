@@ -8,7 +8,8 @@ namespace FakerLibrary
 {
     public class Faker : IFaker
     {
-        protected Dictionary<Type, IValueGenerator> baseTypesGenerators;
+        private Dictionary<Type, IValueGenerator> baseTypesGenerators;
+        private ListGenerator listGenerator;
 
         public Faker()
         {
@@ -31,6 +32,8 @@ namespace FakerLibrary
                 { typeof(DateTime), new DateGenerator() },
                 { typeof(string), new StringGenerator() }
             };
+
+            listGenerator = new ListGenerator(baseTypesGenerators);
         }
 
         public T Create<T>()
@@ -41,21 +44,19 @@ namespace FakerLibrary
         private object Create(Type type)
         {
             object generatedObject;
+            IValueGenerator baseTypeGenerator;
 
-            if (baseTypesGenerators.TryGetValue(type, out IBaseTypeGenerator baseTypeGenerator))
+            if (baseTypesGenerators.TryGetValue(type, out baseTypeGenerator))
             {
                 generatedObject = baseTypeGenerator.Generate();
             }
-            else if (type.IsGenericType && genericTypesGenerators.TryGetValue(type.GetGenericTypeDefinition(), out IGenericTypeGenerator genericTypeGenerator))
+            else if (type.IsGenericType)  // list
             {
-                generatedObject = genericTypeGenerator.Generate(type.GenericTypeArguments[0]);
+                generatedObject = listGenerator.Generate(type.GenericTypeArguments[0]);
             }
-            else if (type.IsArray && arraysGenerators.TryGetValue(type.GetArrayRank(), out IArrayGenerator arrayGenerator))
+            else if (type.IsClass && !type.IsGenericType && !type.IsArray && !type.IsPointer && !type.IsAbstract)
             {
-                generatedObject = arrayGenerator.Generate(type.GetElementType());
-            }
-            else if (type.IsClass && !type.IsGenericType && !type.IsArray && !type.IsPointer && !type.IsAbstract && !generatedTypes.Contains(type))
-            {
+                generatedObject = Create(type);
             }
             else if (type.IsValueType)
             {

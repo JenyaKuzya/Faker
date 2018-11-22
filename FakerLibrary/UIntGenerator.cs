@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FakerLibrary
 {
-    class CharGenerator : IValueGenerator
+    class UIntGenerator : IValueGenerator
     {
         public object Generate()
         {
-            return Convert.ToChar(Convert.ToInt32(Math.Floor(26 * Randomizer.random.NextDouble() + 65)));
+            return (uint)Randomizer.random.Next();
         }
     }
 }

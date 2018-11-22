@@ -44,10 +44,12 @@
     <Compile Include="ByteGenerator.cs" />
     <Compile Include="CharGenerator.cs" />
     <Compile Include="DateGenerator.cs" />
+    <Compile Include="DecimalGenerator.cs" />
     <Compile Include="DoubleGenerator.cs" />
     <Compile Include="Faker.cs" />
     <Compile Include="FloatGenerator.cs" />
     <Compile Include="IFaker.cs" />
+    <Compile Include="IGenericGenerator.cs" />
     <Compile Include="IntGenerator.cs" />
     <Compile Include="IValueGenerator.cs" />
     <Compile Include="ListGenerator.cs" />
@@ -55,8 +57,12 @@
     <Compile Include="ObjectGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomizer.cs" />
+    <Compile Include="SByteGenerator.cs" />
     <Compile Include="ShortGenerator.cs" />
     <Compile Include="StringGenerator.cs" />
+    <Compile Include="UIntGenerator.cs" />
+    <Compile Include="ULongGenerator.cs" />
+    <Compile Include="UShortGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
