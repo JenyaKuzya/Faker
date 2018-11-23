@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace FakerLibrary
 {
-    public interface IValueGenerator
+    public interface IPlugin : IValueGenerator
     {
-        object Generate();
+        Type GeneratedType { get; }
     }
 }

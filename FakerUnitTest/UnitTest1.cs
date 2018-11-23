@@ -13,93 +13,107 @@ namespace FakerUnitTest
         [TestMethod]
         public void ObjectGeneratorTest()
         {
-            Object obj = faker.Create<Object>;
-            Assert.IsTrue(faker.GetObject() != null);
+            Object obj = faker.Create<object>();
+            Assert.IsTrue(obj != null);
         }
 
         [TestMethod]
         public void CharGeneratorTest()
         {
-            Assert.IsTrue((byte)foo.GetChar() > 0 && (byte)foo.GetChar() <= 255);
+            Char obj = faker.Create<char>();
+            Assert.IsTrue((byte)obj > 0 && (byte)obj <= 255);
         }
 
         [TestMethod]
         public void ByteGeneratorTest()
         {
-            Assert.IsTrue(foo.GetByte() != default(byte) && byte.MinValue <= foo.GetByte() && byte.MaxValue >= foo.GetByte());
+            Byte obj = faker.Create<byte>();
+            Assert.IsTrue(obj != default(byte) && byte.MinValue <= obj && byte.MaxValue >= obj);
         }
 
         [TestMethod]
         public void SByteGeneratorTest()
         {
-            Assert.IsTrue(foo.GetSByte() != default(sbyte) && sbyte.MinValue <= foo.GetSByte() && sbyte.MaxValue >= foo.GetSByte());
+            SByte obj = faker.Create<sbyte>();
+            Assert.IsTrue(obj != default(sbyte) && sbyte.MinValue <= obj && sbyte.MaxValue >= obj);
         }
 
         [TestMethod]
         public void IntGeneratorTest()
         {
-            Assert.IsTrue(foo.GetInt() != default(int) && int.MinValue <= foo.GetInt() && int.MaxValue >= foo.GetInt());
+            int obj = faker.Create<int>();
+            Assert.IsTrue(obj != default(int) && int.MinValue <= obj && int.MaxValue >= obj);
         }
 
         [TestMethod]
         public void UIntGeneratorTest()
         {
-            Assert.IsTrue(foo.GetUInt() != default(uint) && uint.MinValue <= foo.GetUInt() && uint.MaxValue >= foo.GetUInt());
+            uint obj = faker.Create<uint>();
+            Assert.IsTrue(obj != default(uint) && uint.MinValue <= obj && uint.MaxValue >= obj);
         }
 
         [TestMethod]
         public void ShortGeneratorTest()
         {
-            Assert.IsTrue(foo.GetShort() != default(short) && short.MinValue <= foo.GetShort() && short.MaxValue >= foo.GetShort());
+            short obj = faker.Create<short>();
+            Assert.IsTrue(obj != default(short) && short.MinValue <= obj && short.MaxValue >= obj);
         }
 
         [TestMethod]
-        public void USortGeneratorTest()
+        public void UShortGeneratorTest()
         {
-            Assert.IsTrue(foo.GetUShort() != default(ushort) && ushort.MinValue <= foo.GetUShort() && ushort.MaxValue >= foo.GetUShort());
+            ushort obj = faker.Create<ushort>();
+            Assert.IsTrue(obj != default(ushort) && ushort.MinValue <= obj && ushort.MaxValue >= obj);
         }
 
         [TestMethod]
         public void LongGeneratorTest()
         {
-            Assert.IsTrue(foo.GetLong() != default(long) && long.MinValue <= foo.GetLong() && long.MaxValue >= foo.GetLong());
+            long obj = faker.Create<long>();
+            Assert.IsTrue(obj != default(long) && long.MinValue <= obj && long.MaxValue >= obj);
         }
 
         [TestMethod]
         public void ULongGeneratorTest()
         {
-            Assert.IsTrue(foo.GetULong() != default(ulong) && ulong.MinValue <= foo.GetULong() && ulong.MaxValue >= foo.GetULong());
+            ulong obj = faker.Create<ulong>();
+            Assert.IsTrue(obj != default(ulong) && ulong.MinValue <= obj && ulong.MaxValue >= obj);
         }
 
         [TestMethod]
         public void DecimalGeneratorTest()
         {
-            Assert.IsTrue(foo.GetDecimal() != default(decimal) && decimal.MinValue <= foo.GetDecimal() && decimal.MaxValue >= foo.GetDecimal());
+            decimal obj = faker.Create<decimal>();
+            Assert.IsTrue(obj != default(decimal) && decimal.MinValue <= obj && decimal.MaxValue >= obj);
         }
 
         [TestMethod]
         public void FloatGeneratorTest()
         {
-            Assert.IsTrue(foo.GetFloat() != default(float) && float.MinValue <= foo.GetFloat() && float.MaxValue >= foo.GetFloat());
+            float obj = faker.Create<float>();
+            Assert.IsTrue(obj != default(float) && float.MinValue <= obj && float.MaxValue >= obj);
         }
 
         [TestMethod]
         public void DoubleGeneratorTest()
         {
-            Assert.IsTrue(foo.GetDouble() != default(double) && double.MinValue <= foo.GetDouble() && double.MaxValue >= foo.GetDouble());
+            double obj = faker.Create<double>();
+            Assert.IsTrue(obj != default(double) && double.MinValue <= obj && double.MaxValue >= obj);
         }
 
         [TestMethod]
         public void DateGeneratorTest()
         {
             DateTime empty = new DateTime();
-            Assert.IsTrue(foo.GetDate() != empty);
+            DateTime obj = faker.Create<DateTime>();
+            Assert.IsTrue(obj != empty);
         }
 
         [TestMethod]
         public void StringGeneratorTest()
         {
-            Assert.IsTrue(foo.GetString() != null && foo.GetString() != String.Empty);
+            String obj = faker.Create<string>();
+            Assert.IsTrue(obj != null && obj != String.Empty);
         }
     }
 }

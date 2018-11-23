@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FakerLibrary
 {
-    class Randomizer
+    public static class Randomizer
     {
         public static Random random = new Random();
     }
