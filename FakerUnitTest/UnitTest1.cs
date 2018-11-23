@@ -10,6 +10,41 @@ namespace FakerUnitTest
     {
         private Faker faker = new Faker();
 
+        public class Bar
+        {
+            public Foo _foo;
+
+            public Bar(Foo foo)
+            {
+                _foo = foo;
+            }
+        }
+
+        public class Foo
+        {
+            public Bar _bar;
+
+            public Foo(Bar bar)
+            {
+                _bar = bar;
+            }
+
+            public Bar GetBar()
+            {
+                return _bar;
+            }
+        }
+
+        public class EmptyConstructor
+        {
+            private EmptyConstructor()
+            {
+
+            }
+
+            public int emptyInt;
+        }
+
         [TestMethod]
         public void ObjectGeneratorTest()
         {
@@ -114,6 +149,42 @@ namespace FakerUnitTest
         {
             String obj = faker.Create<string>();
             Assert.IsTrue(obj != null && obj != String.Empty);
+        }
+
+        [TestMethod]
+        public void ListGeneratorTest()
+        {
+            List<short> obj = faker.Create<List<short>>();
+            Assert.IsTrue(obj != null && obj is List<short>);
+        }
+
+        [TestMethod]
+        public void BarGeneratorTest()
+        {
+            Foo foo = faker.Create<Foo>();
+            Assert.IsTrue(foo.GetBar() != null);
+        }
+
+        [TestMethod]
+        public void EmptyConstructorGeneratorTest()
+        {
+            EmptyConstructor emptyConstructor = faker.Create<EmptyConstructor>();
+            Assert.AreEqual(emptyConstructor, null);
+        }
+
+        [TestMethod]
+        public void ReurciveGeneratorTest()
+        {
+            Foo foo = faker.Create<Foo>();
+            Bar bar = faker.Create<Bar>();
+
+            // 1 уровень рекурсии
+            Assert.IsTrue(foo.GetBar() != null && foo.GetBar()._foo != null);
+            Assert.IsTrue(bar._foo != null && bar._foo.GetBar() != null);
+
+            // 2 уровень рекурсии
+            Assert.IsTrue(foo.GetBar()._foo.GetBar() == null);
+            Assert.IsTrue(bar._foo.GetBar()._foo == null);
         }
     }
 }
