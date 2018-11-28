@@ -10,7 +10,15 @@ namespace FakerLibrary
     {
         public object Generate()
         {
-            return (byte)Randomizer.random.Next();
+            byte result;
+
+            do
+            {
+                result = (byte)Randomizer.random.Next();
+            }
+            while (result == default(byte));
+
+            return result;
         }
     }
 }

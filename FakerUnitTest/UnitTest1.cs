@@ -152,9 +152,6 @@ namespace FakerUnitTest
                 return _bar;
             }
 
-            public byte NonDTOProperty
-            { get; }
-
             public Foo(object o, char c, bool b, byte by, sbyte sby, int i, uint ui, short s, ushort us, long l, ulong ul,
                 decimal d, float f, double dob, DateTime dt, string str, List<short> list, Bar bar)
             {
@@ -243,67 +240,73 @@ namespace FakerUnitTest
         [TestMethod]
         public void ByteGeneratorTest()
         {
-            Assert.IsTrue(foo.GetByte() != default(byte) && byte.MinValue <= foo.GetByte() && byte.MaxValue >= foo.GetByte());
+            Assert.IsTrue(foo.GetByte() != default(byte));
+        }
+
+        [TestMethod]
+        public void BoolGeneratorTest()
+        {
+            Assert.IsTrue(foo.GetBool());
         }
 
         [TestMethod]
         public void SByteGeneratorTest()
         {
-            Assert.IsTrue(foo.GetSByte() != default(sbyte) && sbyte.MinValue <= foo.GetSByte() && sbyte.MaxValue >= foo.GetSByte());
+            Assert.IsTrue(foo.GetSByte() != default(sbyte));
         }
 
         [TestMethod]
         public void IntGeneratorTest()
         {
-            Assert.IsTrue(foo.GetInt() != default(int) && int.MinValue <= foo.GetInt() && int.MaxValue >= foo.GetInt());
+            Assert.IsTrue(foo.GetInt() != default(int));
         }
 
         [TestMethod]
         public void UIntGeneratorTest()
         {
-            Assert.IsTrue(foo.GetUInt() != default(uint) && uint.MinValue <= foo.GetUInt() && uint.MaxValue >= foo.GetUInt());
+            Assert.IsTrue(foo.GetUInt() != default(uint));
         }
 
         [TestMethod]
         public void ShortGeneratorTest()
         {
-            Assert.IsTrue(foo.GetShort() != default(short) && short.MinValue <= foo.GetShort() && short.MaxValue >= foo.GetShort());
+            Assert.IsTrue(foo.GetShort() != default(short));
         }
 
         [TestMethod]
         public void USortGeneratorTest()
         {
-            Assert.IsTrue(foo.GetUShort() != default(ushort) && ushort.MinValue <= foo.GetUShort() && ushort.MaxValue >= foo.GetUShort());
+            Assert.IsTrue(foo.GetUShort() != default(ushort));
         }
 
         [TestMethod]
         public void LongGeneratorTest()
         {
-            Assert.IsTrue(foo.GetLong() != default(long) && long.MinValue <= foo.GetLong() && long.MaxValue >= foo.GetLong());
+            Assert.IsTrue(foo.GetLong() != default(long));
         }
 
         [TestMethod]
         public void ULongGeneratorTest()
         {
-            Assert.IsTrue(foo.GetULong() != default(ulong) && ulong.MinValue <= foo.GetULong() && ulong.MaxValue >= foo.GetULong());
+            Assert.IsTrue(foo.GetULong() != default(ulong));
         }
 
         [TestMethod]
         public void DecimalGeneratorTest()
         {
-            Assert.IsTrue(foo.GetDecimal() != default(decimal) && decimal.MinValue <= foo.GetDecimal() && decimal.MaxValue >= foo.GetDecimal());
+            Assert.IsTrue(foo.GetDecimal() != default(decimal));
         }
 
         [TestMethod]
         public void FloatGeneratorTest()
         {
-            Assert.IsTrue(foo.GetFloat() != default(float) && float.MinValue <= foo.GetFloat() && float.MaxValue >= foo.GetFloat());
+            Assert.IsTrue(foo.GetFloat() != default(float));
         }
 
         [TestMethod]
         public void DoubleGeneratorTest()
         {
-            Assert.IsTrue(foo.GetDouble() != default(double) && double.MinValue <= foo.GetDouble() && double.MaxValue >= foo.GetDouble());
+            Assert.IsTrue(foo.GetDouble() != default(double));
         }
 
         [TestMethod]
@@ -320,7 +323,7 @@ namespace FakerUnitTest
         }
 
         [TestMethod]
-        public void ListGeneratorTest2()
+        public void ListGeneratorTest()
         {
             Assert.IsTrue(foo.GetList() != null && foo.GetList() is List<short>);
         }
