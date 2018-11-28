@@ -18,6 +18,8 @@ namespace FakerLibrary
         {
             generatedTypes = new List<Type>();
 
+            asm = Assembly.LoadFrom("Plugins\\Plugins.dll");
+
             baseTypesGenerators = new Dictionary<Type, IValueGenerator>
             {
                 { typeof(object), new ObjectGenerator() },
